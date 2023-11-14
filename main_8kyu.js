@@ -23,11 +23,11 @@ console.log(abbrevName("dmitrij losev"))
 
 // Write a function "greet" that returns "hello world!"
 //https://www.codewars.com/kata/523b4ff7adca849afe000035/train/javascript
-function greet() {
+function greeting() {
     return "hello world!"
 }
 
-console.log(greet())
+console.log(greeting())
 
 
 //A Needle in the Haystack
@@ -68,7 +68,7 @@ console.log(lovefunc(2, 2))
 //DNA to RNA Conversion
 //https://www.codewars.com/kata/5556282156230d0e5e000089
 function DNAtoRNA(dna) {
-    return dna.split("").map(i=>(i==="T" ? i="U" : i)).join("")
+    return dna.split("").map(i=>(i==="T" ? i="U" : "")).join("")
 }
 console.log(DNAtoRNA("TTTT"))
 
@@ -94,6 +94,7 @@ function greet(name){
     {return "Hello, " + name + "!";}
 }
 
+console.log(greet("Johnny"))
 //Count by X
 //https://www.codewars.com/kata/5513795bd3fafb56c200049e
 
