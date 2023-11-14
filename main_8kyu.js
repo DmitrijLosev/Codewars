@@ -68,7 +68,7 @@ console.log(lovefunc(2, 2))
 //DNA to RNA Conversion
 //https://www.codewars.com/kata/5556282156230d0e5e000089
 function DNAtoRNA(dna) {
-    return dna.split("").map(i=>(i==="T" ? i="U" : "")).join("")
+    return dna.split("").map(i=>(i==="T" ? "U" : i)).join("")
 }
 console.log(DNAtoRNA("TTTT"))
 
