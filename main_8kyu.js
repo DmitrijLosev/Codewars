@@ -150,22 +150,28 @@ const rps = (p1, p2) => {
     if (p1 === p2) {
         return "Draw!"
     } else {
-        if (p1 === "paper" && p2 === "rock") {return "Player 1 won!"}
-        if (p1 === "rock" && p2 === "scissors") {return "Player 1 won!"}
-        if (p1 === "scissors" && p2 === "paper") { return "Player 1 won!"} else{
-           return "Player 2 won!"
+        if (p1 === "paper" && p2 === "rock") {
+            return "Player 1 won!"
+        }
+        if (p1 === "rock" && p2 === "scissors") {
+            return "Player 1 won!"
+        }
+        if (p1 === "scissors" && p2 === "paper") {
+            return "Player 1 won!"
+        } else {
+            return "Player 2 won!"
         }
 
     }
 }
 
-console.log(rps("paper","scissors"))
+console.log(rps("paper", "scissors"))
 
 //Array plus array
 //https://www.codewars.com/kata/5a2be17aee1aaefe2a000151/train/javascript
 
 function arrayPlusArray(arr1, arr2) {
-    const arrSum=(arr)=> {
+    const arrSum = (arr) => {
         let sumArr = 0;
         for (let i = 0; i < arr.length; i++) {
             sumArr += arr[i]
@@ -175,13 +181,13 @@ function arrayPlusArray(arr1, arr2) {
     return arrSum(arr1) + arrSum(arr2);
 }
 
-console.log(arrayPlusArray([1,2,3,4,5],[1,2,3]))
+console.log(arrayPlusArray([1, 2, 3, 4, 5], [1, 2, 3]))
 
 //Total amount of points
 //https://www.codewars.com/kata/5bb904724c47249b10000131/train/javascript
 
 function points(games) {
-    let points=0;
+    let points = 0;
 
     for (let i = 0; i < games.length; i++) {
         if (games[i].split(":")[0] > games[i].split(":")[1]) {
@@ -194,13 +200,13 @@ function points(games) {
     return points
 }
 
-console.log(points(["3:1","1:1","2:2","2:1"]))
+console.log(points(["3:1", "1:1", "2:2", "2:1"]))
 
 //Grasshopper - Grade book
 //https://www.codewars.com/kata/55cbd4ba903825f7970000f5
 
-function getGrade (s1, s2, s3) {
-    const ave=(s1 + s2 + s3) / 3;
+function getGrade(s1, s2, s3) {
+    const ave = (s1 + s2 + s3) / 3;
     console.log(ave)
     if (90 <= ave && ave <= 100) return 'A';
     if (80 <= ave && ave < 90) return 'B';
@@ -211,4 +217,57 @@ function getGrade (s1, s2, s3) {
 
 }
 
-console.log(getGrade (75, 75, 70))
+console.log(getGrade(75, 75, 70))
+
+function sumArray(array) {
+    const maxIndex = array.indexOf(Math.max(...array))
+    const minIndex = array.indexOf(Math.min(...array))
+    let sumArray = 0;
+    for (let i = 0; i < array.length; i++) {
+        i !== maxIndex && i !== minIndex ? sumArray +=array[i] : ""
+    }
+    return sumArray
+}
+
+console.log(sumArray([2, 1, 3, 4]))
+
+
+//Sum Mixed Array
+//https://www.codewars.com/kata/57eaeb9578748ff92a000009/train/javascript
+function sumMix(x){
+    let sum=0;
+    for (let i = 0; i < x.length; i++) {
+        sum= sum+(+x[i])
+    }
+    return sum
+}
+
+//Count the Monkeys!
+//https://www.codewars.com/kata/56f69d9f9400f508fb000ba7
+
+function monkeyCount(n) {
+    let monkey=[];
+    for (let i = 0; i < n; i++) {
+        monkey[i]=i+1
+    }
+    return monkey
+}
+
+console.log(monkeyCount(5))
+
+//The Feast of Many Beasts
+//https://www.codewars.com/kata/5aa736a455f906981800360d/
+function feast(beast, dish) {
+    return beast.split("")[0] === dish.split("")[0] && beast.split("")[beast.split("").length-1]===dish.split("")[dish.split("").length-1]
+}
+
+console.log(feast("app le", "anan na se"))
+
+//Transportation on vacation
+//https://www.codewars.com/kata/568d0dd208ee69389d000016
+function rentalCarCost(d) {
+    let x =  d >= 3 && d < 7 ? 20 : d>=7 ? 50 : 0
+    return d * 40 - x
+}
+
+console.log(rentalCarCost(10))
