@@ -224,7 +224,7 @@ function sumArray(array) {
     const minIndex = array.indexOf(Math.min(...array))
     let sumArray = 0;
     for (let i = 0; i < array.length; i++) {
-        i !== maxIndex && i !== minIndex ? sumArray +=array[i] : ""
+        i !== maxIndex && i !== minIndex ? sumArray += array[i] : ""
     }
     return sumArray
 }
@@ -234,10 +234,10 @@ console.log(sumArray([2, 1, 3, 4]))
 
 //Sum Mixed Array
 //https://www.codewars.com/kata/57eaeb9578748ff92a000009/train/javascript
-function sumMix(x){
-    let sum=0;
+function sumMix(x) {
+    let sum = 0;
     for (let i = 0; i < x.length; i++) {
-        sum= sum+(+x[i])
+        sum = sum + (+x[i])
     }
     return sum
 }
@@ -246,9 +246,9 @@ function sumMix(x){
 //https://www.codewars.com/kata/56f69d9f9400f508fb000ba7
 
 function monkeyCount(n) {
-    let monkey=[];
+    let monkey = [];
     for (let i = 0; i < n; i++) {
-        monkey[i]=i+1
+        monkey[i] = i + 1
     }
     return monkey
 }
@@ -258,7 +258,7 @@ console.log(monkeyCount(5))
 //The Feast of Many Beasts
 //https://www.codewars.com/kata/5aa736a455f906981800360d/
 function feast(beast, dish) {
-    return beast.split("")[0] === dish.split("")[0] && beast.split("")[beast.split("").length-1]===dish.split("")[dish.split("").length-1]
+    return beast.split("")[0] === dish.split("")[0] && beast.split("")[beast.split("").length - 1] === dish.split("")[dish.split("").length - 1]
 }
 
 console.log(feast("app le", "anan na se"))
@@ -266,8 +266,66 @@ console.log(feast("app le", "anan na se"))
 //Transportation on vacation
 //https://www.codewars.com/kata/568d0dd208ee69389d000016
 function rentalCarCost(d) {
-    let x =  d >= 3 && d < 7 ? 20 : d>=7 ? 50 : 0
+    let x = d >= 3 && d < 7 ? 20 : d >= 7 ? 50 : 0
     return d * 40 - x
 }
 
 console.log(rentalCarCost(10))
+
+//Thinkful - Logic Drills: Traffic light
+//https://www.codewars.com/kata/58649884a1659ed6cb000072
+
+function updateLight(current) {
+    if (current === "green") {
+        return "yellow"
+    }
+    if (current === "yellow") {
+        return "red"
+    } else {
+        return "green"
+    }
+}
+
+console.log(updateLight("green"))
+
+//L1: Set Alarm
+//https://www.codewars.com/kata/568dcc3c7f12767a62000038
+function setAlarm(employed, vacation) {
+    return employed && !vacation
+}
+
+console.log(setAlarm(true, true))
+
+//Removing Elements
+//https://www.codewars.com/kata/5769b3802ae6f8e4890009d2
+
+function removeEveryOther(arr) {
+    return arr.filter((i, index) => index % 2 === 0)
+}
+
+console.log(removeEveryOther([1,2,3,4,5,6,7,8,9,0]))
+
+//Third Angle of a Triangle
+//https://www.codewars.com/kata/5a023c426975981341000014/train/javascript
+function otherAngle(a, b) {
+    return 180-a-b;
+}
+
+console.log( otherAngle(45, 45))
+
+//Will there be enough space?
+//https://www.codewars.com/kata/5875b200d520904a04000003
+
+    function enough(cap, on, wait) {
+        if(cap>=(on+wait)) {return 0} else {return (wait+on)-cap}
+    }
+
+console.log(enough(12,3,5))
+
+//Beginner Series #4 Cockroach
+//https://www.codewars.com/kata/55fab1ffda3e2e44f00000c6/train/javascript
+function cockroachSpeed(s) {
+    return Math.floor(s*1000/36)
+}
+
+console.log(cockroachSpeed(60))
