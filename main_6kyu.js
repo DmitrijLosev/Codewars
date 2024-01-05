@@ -24,3 +24,37 @@ function findMissingLetter(array) {
 }
 
 console.log(findMissingLetter(["a","c","d"]))
+
+
+//WeIrD StRiNg CaSe
+//https://www.codewars.com/kata/52b757663a95b11b3d00062d
+
+function toWeirdCase(string){
+   return string.toLowerCase().split(" ")
+        .map((el,index)=>el
+            .split("").map((i,index)=>index%2===0 ? i.toUpperCase() : i.toLowerCase())
+            .join("")).join(" ")
+}
+
+console.log(toWeirdCase("asdadasda dsadsada dsadsadasd sdasad sdfg dhlghdg hlgjghlkjlg hkj"))
+
+//Title Case
+//https://www.codewars.com/kata/5202ef17a402dd033c000009
+function titleCase(title, minorWords) {
+    if (!title) return "";
+    const minorWordsArray = minorWords
+        ? minorWords.toLowerCase().split(" ") :
+        [];
+    let arr=title.split(" ")
+    function lowCase(word) {
+        return word[0].toUpperCase()+word.toLowerCase().slice(1)
+    }
+    arr=arr.map((el,index)=>
+        (minorWordsArray
+            .every(i=>i !== el.toLowerCase()) && index > 0)
+            ? lowCase(el) : el.toLowerCase())
+    arr[0]=lowCase(arr[0])
+    return arr.join(" ")
+}
+
+console.log(titleCase('THE WIND IN THE WILLOWS', 'The In'))
