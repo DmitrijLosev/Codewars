@@ -87,18 +87,17 @@ function encrypt(text, n) {
     }
 }
 
-console.log(encrypt("012345",3))
-
+console.log(encrypt("012345", 3))
 
 
 function decrypt(encryptedText, n) {
-    if (encryptedText === "" || n <= 0 || encryptedText ===null) {
+    if (encryptedText === "" || n <= 0 || encryptedText === null) {
         return encryptedText;
     } else {
         let arrChart = encryptedText.split("");
 
         function replaceIndexBack() {
-            let mid = arrChart.length%2===0 ? arrChart.length / 2 : Math.floor(arrChart.length / 2)
+            let mid = arrChart.length % 2 === 0 ? arrChart.length / 2 : Math.floor(arrChart.length / 2)
             let odd = arrChart.slice(0, mid);
             let even = arrChart.slice(mid);
             let arr = [];
@@ -107,7 +106,9 @@ function decrypt(encryptedText, n) {
                 arr.push(even[i]);
                 arr.push(odd[i]);
             }
-            if(arrChart.length%2!==0) {arr.push(even[mid])}
+            if (arrChart.length % 2 !== 0) {
+                arr.push(even[mid])
+            }
             arrChart = arr;
         }
 
@@ -120,3 +121,50 @@ function decrypt(encryptedText, n) {
 }
 
 console.log(decrypt("hsi  etTi sats!", 1))
+
+//Good vs Evil
+//https://www.codewars.com/kata/52761ee4cffbc69732000738
+
+function goodVsEvil(good, evil) {
+
+    let goodMult = [1, 2, 3, 3, 4, 10];
+    let evilMult = [1, 2, 2, 2, 3, 5, 10]
+    function sumPoint(str,mult){
+        let arr = str.split(" ")
+        let result=0
+        for(let i=0; i<arr.length; i++) {
+            result += +arr[i]*mult[i]
+        }
+        return result
+
+    }
+    return sumPoint(good,goodMult)===sumPoint(evil,evilMult) ? "Battle Result: No victor on this battle field" :
+        sumPoint(good,goodMult)>sumPoint(evil,evilMult) ? "Battle Result: Good triumphs over Evil" :
+            "Battle Result: Evil eradicates all trace of Good"
+}
+
+console.log(goodVsEvil("1 1 1 2 4 5","5 6 7 4 3 2 1"))
+
+//Multiplication table
+//https://www.codewars.com/kata/534d2f5b5371ecf8d2000a08
+
+multiplicationTable = function(size) {
+    function multiple(ind){
+        let res=[]
+       for (let j=1 ; j<=size; j++){
+           res.push(j*ind)
+       }
+        return res
+    }
+
+    let result=[]
+    for (let i=1; i<=size; i++) {
+        result.push(multiple(i)) ;
+    }
+    return result
+}
+
+console.log(multiplicationTable(3))
+
+
+
