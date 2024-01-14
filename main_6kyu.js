@@ -166,5 +166,17 @@ multiplicationTable = function(size) {
 
 console.log(multiplicationTable(3))
 
+//Backspaces in string
+//https://www.codewars.com/kata/5727bb0fe81185ae62000ae3
 
+function cleanString(s) {
+    if (s.length===0) {return ""} else {
+        while (s.includes("#") && s.length>0) {
+          if(s.indexOf("#")>0) {s=s.slice(0,s.indexOf("#")-1) + s.slice(s.indexOf("#")+1)}
+           else { s=s.slice(1)}
+    }
+        return s
+    }
+}
 
+console.log(cleanString('abc####d##c#')==="")
