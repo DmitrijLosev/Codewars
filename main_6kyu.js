@@ -129,37 +129,39 @@ function goodVsEvil(good, evil) {
 
     let goodMult = [1, 2, 3, 3, 4, 10];
     let evilMult = [1, 2, 2, 2, 3, 5, 10]
-    function sumPoint(str,mult){
+
+    function sumPoint(str, mult) {
         let arr = str.split(" ")
-        let result=0
-        for(let i=0; i<arr.length; i++) {
-            result += +arr[i]*mult[i]
+        let result = 0
+        for (let i = 0; i < arr.length; i++) {
+            result += +arr[i] * mult[i]
         }
         return result
 
     }
-    return sumPoint(good,goodMult)===sumPoint(evil,evilMult) ? "Battle Result: No victor on this battle field" :
-        sumPoint(good,goodMult)>sumPoint(evil,evilMult) ? "Battle Result: Good triumphs over Evil" :
+
+    return sumPoint(good, goodMult) === sumPoint(evil, evilMult) ? "Battle Result: No victor on this battle field" :
+        sumPoint(good, goodMult) > sumPoint(evil, evilMult) ? "Battle Result: Good triumphs over Evil" :
             "Battle Result: Evil eradicates all trace of Good"
 }
 
-console.log(goodVsEvil("1 1 1 2 4 5","5 6 7 4 3 2 1"))
+console.log(goodVsEvil("1 1 1 2 4 5", "5 6 7 4 3 2 1"))
 
 //Multiplication table
 //https://www.codewars.com/kata/534d2f5b5371ecf8d2000a08
 
-multiplicationTable = function(size) {
-    function multiple(ind){
-        let res=[]
-       for (let j=1 ; j<=size; j++){
-           res.push(j*ind)
-       }
+multiplicationTable = function (size) {
+    function multiple(ind) {
+        let res = []
+        for (let j = 1; j <= size; j++) {
+            res.push(j * ind)
+        }
         return res
     }
 
-    let result=[]
-    for (let i=1; i<=size; i++) {
-        result.push(multiple(i)) ;
+    let result = []
+    for (let i = 1; i <= size; i++) {
+        result.push(multiple(i));
     }
     return result
 }
@@ -170,13 +172,69 @@ console.log(multiplicationTable(3))
 //https://www.codewars.com/kata/5727bb0fe81185ae62000ae3
 
 function cleanString(s) {
-    if (s.length===0) {return ""} else {
-        while (s.includes("#") && s.length>0) {
-          if(s.indexOf("#")>0) {s=s.slice(0,s.indexOf("#")-1) + s.slice(s.indexOf("#")+1)}
-           else { s=s.slice(1)}
-    }
+    if (s.length === 0) {
+        return ""
+    } else {
+        while (s.includes("#") && s.length > 0) {
+            if (s.indexOf("#") > 0) {
+                s = s.slice(0, s.indexOf("#") - 1) + s.slice(s.indexOf("#") + 1)
+            } else {
+                s = s.slice(1)
+            }
+        }
         return s
     }
 }
 
-console.log(cleanString('abc####d##c#')==="")
+console.log(cleanString('abc####d##c#') === "")
+
+//The Vowel Code
+//https://www.codewars.com/kata/53697be005f803751e0015aa
+
+
+function encode(string) {
+    let charts = {
+        "a": "1",
+        "e": "2",
+        "i": "3",
+        "o": "4",
+        "u": "5"
+    }
+    return string.split("").map(i=>Object.keys(charts).includes(i) ? charts[i] : i).join("")
+}
+
+function decode(string) {
+    let charts = {
+        "1": "a",
+        "2": "e",
+        "3": "i",
+        "4": "o",
+        "5": "u"
+    }
+    return string.split("").map(i=>Object.keys(charts).includes(i) ? charts[i] : i).join("")
+}
+
+console.log(decode("Th2 W3nd 3n th2 W3ll4ws"));
+console.log(encode("The Wind in the Willows"));
+
+
+//https://www.codewars.com/kata/5420fc9bb5b2c7fd57000004
+//Highest Rank Number in an Array
+
+function highestRank(arr){
+    let res={}
+    let sortedArr = arr.sort()
+    while(sortedArr.length>0) {
+        let value = sortedArr[0]
+        let prevLength=sortedArr.length
+        sortedArr=sortedArr.filter(i=>i!==value)
+        if(Object.values(res)[0]<(prevLength-sortedArr.length) || !Object.values(res)[0] ||
+            ((Object.values(res)[0]===(prevLength-sortedArr.length)) && value>+Object.keys(res)[0] )) {
+            res={[value.toString()]:(prevLength-sortedArr.length)}
+        }
+    }
+    return +Object.keys(res)[0]
+}
+
+
+console.log(highestRank([12, 10, 8, 12, 7, 6, 4, 10, 12]))
