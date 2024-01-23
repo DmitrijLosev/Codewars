@@ -65,3 +65,56 @@ function generateHashtag (str) {
     }
 }
 console.log(generateHashtag ("dfsdfsdfs                       fdsfsdf      sdfs fsdfsdf      sdfdsfsdf sdf sd"))
+
+//First non-repeating character
+//https://www.codewars.com/kata/52bc74d4ac05d0945d00054e
+
+function firstNonRepeatingLetter(s) {
+    let str=s.toLowerCase()
+    let letter = "";
+    for (let chart of str) {
+        if (str.replaceAll(chart,"").length+1 === str.length) {
+            letter=chart;
+            break;
+        }
+    }
+    return !letter ? letter : s.includes(letter.toUpperCase()) ? letter.toUpperCase() : letter
+}
+
+console.log(firstNonRepeatingLetter("moonmen"))
+
+
+//Extract the domain name from a URL
+//https://www.codewars.com/kata/514a024011ea4fb54200004b
+
+function domainName(url){
+    let rest = url.split("//")[1] ?  url.split("//")[1] : url
+    console.log(rest)
+    let rest2 = rest.startsWith("www.") ? rest.slice(4) : rest
+    console.log(rest2)
+    return rest2.slice(0,rest2.indexOf("."))
+}
+
+console.log(domainName("www.xakep.ru"))
+
+//String incrementer
+//https://www.codewars.com/kata/54a91a4883a7de5d7800009
+
+function incrementString (s) {
+    let numb=""
+    while(!isNaN(+s.slice(s.length-1)) && s.length>0) {
+        numb +=s.slice(s.length-1)
+        s=s.slice(0,s.length-1)
+    }
+    if(numb.length===0) {return s+"1"} else {
+        let strNumb = (+numb.split("").reverse().join("")+1).toString()
+        if (strNumb.length < numb.length){
+            while(strNumb.length !== numb.length) {
+                strNumb="0"+strNumb
+            }
+        }
+        return s+strNumb
+    }
+}
+
+console.log(incrementString ("1"))
