@@ -73,4 +73,12 @@ console.log(sumIntervals(
     [[ -14, -12 ], [ -8, -2 ], [ -2, 6 ], [ -1, 0 ], [ 11, 12 ] ]
         ))
 
+//Sum Strings as Numbers
+//https://www.codewars.com/kata/5324945e2ece5e1f32000370
+
+function sumStrings(a,b) {
+    return (+a+(+b))>Number.MAX_SAFE_INTEGER ? (BigInt(a)+BigInt(b)).toString() : (+a+(+b)).toString()
+}
+
+console.log(sumStrings('712569312664357328695151392', '8100824045303269669937'))
 
