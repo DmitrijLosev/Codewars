@@ -109,7 +109,7 @@ console.log(solution1([3, 13, 23, 7, 83]))
 
 //Range Extraction
 //https://www.codewars.com/kata/51ba717bb08c1cd60f00002f
-function solution(list) {
+function solution2(list) {
     let str = '';
     let arr = []
     while (list.length > 0) {
@@ -143,7 +143,61 @@ function solution(list) {
             }
         }
     }
-    return str.slice(0,str.length-1)
+    return str.slice(0, str.length - 1)
 }
 
-console.log(solution([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]))
+console.log(solution2([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]))
+
+//Strip Comments
+//https://www.codewars.com/kata/51c8e37cee245da6b40000bd
+
+function solution(text, markers) {
+
+    function corr(str) {
+        if (markers.length > 0) {
+            markers.forEach(marker => {
+                if (str.indexOf(marker) === 0) {
+                    str = ""
+                } else {
+                    while (str.indexOf(marker) > 0) {
+                        str = str.slice(0, str.indexOf(marker))
+                    }
+                }
+            });
+        }
+        return str
+    }
+
+    return text.split("\n").map(s => corr(s).replace(/\s+$/, "")).join("\n")
+}
+
+
+console.log(solution("#aa bb\ncc dd", ["#"]))
+
+//Next bigger number with the same digits
+//https://www.codewars.com/kata/55983863da40caa2c900004e
+
+function nextBigger(n) {
+    let arr = n.toString().split("");
+    if (arr.length === 1 || Array.from(new Set(arr)).length === 1) {
+        return -1;
+    } else {
+        for (let i = 2; i <= arr.length; i++) {
+            let newArr = arr.slice(arr.length - i).map(el => +el);
+            let repArr = newArr.slice(1).filter(el => el > newArr[0]);
+            if (repArr.length >= 1) {
+                let min = Math.min(...repArr);
+                let minIndex = newArr.indexOf(min);
+                [newArr[0], newArr[minIndex]] = [newArr[minIndex], newArr[0]];
+                newArr = [newArr[0], ...newArr.slice(1).sort((a, b) => a - b)];
+                if (+arr.slice(0, arr.length - i).concat(newArr.map(el => el.toString())).join("") > n) {
+                    arr = arr.slice(0, arr.length - i).concat(newArr.map(el => el.toString()));
+                    break;
+                }
+            }
+        }
+        return +arr.join("") === n ? -1 : +arr.join("");
+    }
+}
+
+console.log(nextBigger(1234321))
