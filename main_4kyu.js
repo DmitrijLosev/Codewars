@@ -201,3 +201,78 @@ function nextBigger(n) {
 }
 
 console.log(nextBigger(1234321))
+
+//Snail
+//https://www.codewars.com/kata/521c2db8ddc89b9b7a0000c1
+
+snail = function(array) {
+    if (array.length === 1 && array[0].length===0) {return []}
+    else {
+        let resArr = [];
+        function cut() {
+            const arr=[]
+            if(!array.every(ar=>ar.length===0)) {
+                resArr.push(...array.shift())
+            }
+            if(!array.every(ar=>ar.length===0)) {
+                array.forEach(ar=> {
+                    resArr.push(ar.pop())
+                })
+            }
+            if(!array.every(ar=>ar.length===0)) {
+                resArr.push(...array.pop().reverse())
+            }
+            if(!array.every(ar=>ar.length===0)) {
+                array.forEach(ar=>{
+                    arr.push(ar.shift())
+                })
+                resArr.push(...arr.reverse())
+            }
+        }
+        while(array.length!==0){
+            cut()
+        }
+        return resArr
+    }
+}
+console.log(snail([[1,2,3,1],[4,5,6,4],[7,8,9,7],[7,8,9,7]]))
+console.log(snail([[1]]))
+
+//Adding Big Numbers
+//https://www.codewars.com/kata/525f4206b73515bffb000b21
+
+function add(a, b) {
+    let arrA;
+    let arrB;
+    if(a.length > b.length){
+        arrA = a.split('')
+        arrB = b.split('')
+    } else {
+        arrA = b.split('')
+        arrB = a.split('')
+    }
+    let newArr = arrA.slice(0, arrA.length-arrB.length)
+    arrA = arrA.slice(arrA.length-arrB.length)
+let sumArr = arrA.map((el,index,arr)=>(+arr[index]+(+arrB[index])).toString())
+    let resArr = [...newArr,...sumArr]
+    let counter = 0
+    let res = ''
+    for (let i = resArr.length-1; i >=0; i--) {
+
+        if((+resArr[i]+counter).toString().length===1) {
+
+            res = (+resArr[i]+counter).toString() + res
+        counter = 0
+        }
+     else {
+        res = (+resArr[i]+counter).toString().slice(1) + res
+        counter=1
+    }
+    }
+    if(counter === 1) {
+        return "1"+res
+    } else { return res}
+
+}
+
+console.log(add("123", "456"))
